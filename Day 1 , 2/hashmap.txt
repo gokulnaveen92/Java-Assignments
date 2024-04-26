@@ -1,0 +1,47 @@
+// You are using Java
+import java.util.*;
+class Main{
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        
+        int n = sc.nextInt();
+        sc.nextLine();
+        
+        HashMap<String,String> map = new HashMap<>();
+        
+        for(int i=0;i<n;i++){
+            String[] input = sc.nextLine().split(" ");
+            String key = input[0];
+            String value = input[1];
+            map.put(key,value);
+        }
+        
+        //System.out.println(map);
+        
+        String keyToCheck = sc.nextLine();
+        String keyToValue = sc.nextLine();
+        
+        boolean isthere = map.containsKey(keyToCheck);
+        //System.out.println(isthere);
+        if(isthere){
+            System.out.println("key "+keyToCheck+" exists in the HashMap.");
+        }else{
+            System.out.println("key "+keyToCheck+" does not exist in the HashMap.");
+        }
+        
+        System.out.println("Printing all key-value pairs using EntrySet:");
+        for(Map.Entry<String,String> set : map.entrySet()){
+            System.out.println("key: "+set.getKey()+", Value: "+set.getValue());
+        }
+        
+        boolean iskeythere = map.containsKey(keyToValue);
+        //System.out.println(iskeythere);
+        
+        if(iskeythere){
+            System.out.println("Value for key "+keyToValue+": "+map.get(keyToValue));
+        }else{
+            System.out.println("key "+keyToValue+" does not exist in the HashMap.");
+        }
+        
+    }
+}

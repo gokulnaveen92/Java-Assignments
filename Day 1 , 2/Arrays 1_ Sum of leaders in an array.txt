@@ -1,0 +1,47 @@
+// You are using Java
+import java.util.*;
+class Main{
+    public static void main(String[] args){
+        
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        sc.nextLine();
+        
+        String[] arr1 = sc.nextLine().split(" ");
+        int[] arr2 = new int[n];
+        
+        for(int i=0;i<n;i++){
+            arr2[i] = Integer.parseInt(arr1[i]);
+        }
+        
+        int sum = arr2[n-1];
+        boolean ishigh = false;
+        //System.out.println("initial sum:"+sum);
+        
+        
+        for(int i=0;i<n-1;i++){
+            
+            int temp = arr2[i];
+            //System.out.println("temp :" +temp);
+            for(int j=i+1;j<n;j++){
+                //System.out.println("arr2 :" +arr2[j]);
+                if(temp>arr2[j]){
+                    ishigh = true;
+                    //System.out.println("current status :" +ishigh);
+                }else{
+                    ishigh = false;
+                    break;
+                    //System.out.println("current status :" +ishigh);
+                }
+                
+            }
+            if(ishigh){
+                sum = sum+temp;
+                //System.out.println("current Sum :" +sum);
+            }
+            
+        }
+        
+        System.out.println(sum);
+    }
+}

@@ -1,0 +1,33 @@
+// You are using Java
+import java.util.*;
+import java.util.Arrays.*;
+class Main{
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        
+        int m = sc.nextInt();
+        int n = sc.nextInt();
+        sc.nextLine();
+        
+        int[][] arr1 = new int[m][n];
+        
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                arr1[i][j] = sc.nextInt();
+            }
+        }
+        
+        sort2DArrayBYRow(m,arr1);
+    
+    }
+    
+    static void sort2DArrayBYRow(int m , int[][] arr){
+        for(int i=0;i<m;i++){
+            Arrays.sort(arr[i]);
+            for(int x : arr[i]){
+                System.out.print(x + " ");
+            }
+            System.out.println();
+        }
+    }
+}
