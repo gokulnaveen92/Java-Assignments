@@ -10,7 +10,7 @@ class Main{
         
         for(int i=0;i<n;i++){
             String[] input = sc.nextLine().split(" ");
-            String player = input[0];
+            String player = input[0].trim();
             int runs = Integer.parseInt(input[1]);
             
             map.put(player,runs);
