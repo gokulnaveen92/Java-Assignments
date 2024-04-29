@@ -231,4 +231,51 @@ class Main{
         }
     }
 }
-6)
+6)// You are using Java
+import java.util.*;
+class InvalidateAgeException extends Exception{
+    InvalidateAgeException(String msg){
+        super(msg);
+    }
+}
+
+class InvalidateAadharException extends Exception{
+    InvalidateAadharException(String msg){
+        super(msg);
+    }
+}
+
+
+class Main{
+    
+    void validate(int age ,boolean aadhar) throws InvalidateAgeException , InvalidateAadharException{
+    if(age>=18){
+        System.out.println(aadhar);
+        if(!aadhar){
+            throw new InvalidateAadharException("u r not having an aadhar card");
+        }else{
+            System.out.println("user validated");
+        }
+    }else{
+        throw new InvalidateAgeException("age is less than 18");
+    }
+}
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        Main m = new Main();
+        
+        int age = Integer.parseInt(sc.nextLine());
+        boolean aadhar = Boolean.parseBoolean(sc.nextLine());
+        System.out.println(aadhar);
+        
+        try{
+            m.validate(age,aadhar);
+        }catch(InvalidateAgeException e){
+            System.out.println(e);
+        }catch(InvalidateAadharException e){
+            System.out.println(e);
+        }
+            
+    }
+}
+
