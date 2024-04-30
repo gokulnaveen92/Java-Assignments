@@ -43,3 +43,34 @@ class Main{
         
     }
 }
+2)// You are using Java
+import java.util.*;
+
+class InvalidAgeException extends Exception{
+    InvalidAgeException(String msg){
+        super(msg);
+    }
+}
+
+class Main{
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        
+        int age = sc.nextInt();
+        try{
+            if(age>18 && age<=100){
+                System.out.println("Valid for Vote");
+            }else if(age<+0){
+                throw new InvalidAgeException("age must be greater than 0");
+            }else if(age>100){
+                throw new InvalidAgeException("age should not be greater than 100");
+            }
+            else{
+                throw new InvalidAgeException("InValid to vote");
+            }
+        }catch(InvalidAgeException e){
+            System.out.println(e);
+        }
+        
+    }
+}
