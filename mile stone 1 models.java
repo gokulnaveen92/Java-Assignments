@@ -74,3 +74,83 @@ class Main{
         
     }
 }
+3)// You are using Java
+import java.util.*;
+import java.sql.*;
+
+class Main{
+    void display(PreparedStatement pst,Connection con,ResultSet rs){
+        try{
+        pst = con.prepareStatement("SELECT * FROM mobile ");
+        rs = pst.executeQuery();
+        while(rs.next()){
+            System.out.println(rs.getInt("sno")+" "+rs.getString("model")+" "+rs.getString("brand")+" "+rs.getInt("price"));
+        }
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+    }
+    public static void main(String[] args){
+        Main m = new Main();
+        try{
+           Scanner sc = new Scanner(System.in);
+           Connection con = DriverManager.getConnection("jdbc:mysql://localhost/ri_db","test","test123");
+           PreparedStatement pst = null;
+           ResultSet rs = null;
+           
+           int n = Integer.parseInt(sc.nextLine());
+           
+           switch(n){
+               case 1:
+                   int sno = sc.nextInt();
+                   sc.nextLine();
+                   String mod = sc.nextLine();
+                   String brand = sc.nextLine();
+                   int price = sc.nextInt();
+                   pst = con.prepareStatement("INSERT INTO mobile(sno,model,brand,price) VALUES(?,?,?,?)");
+                   pst.setInt(1,sno);
+                   pst.setString(2,mod);
+                   pst.setString(3,brand);
+                   pst.setInt(4,price);
+                   int x = pst.executeUpdate();
+                   if(x>0){
+                       System.out.println("inserted");
+                   }
+                   m.display(pst,con,rs);
+                   break;
+                 
+                case 2:
+                    m.display(pst,con,rs);
+                    
+                case 3:
+                    int id = sc.nextInt();
+                    sc.nextLine();
+                    String name1 = sc.nextLine();
+                    int price1 = sc.nextInt();
+                    pst = con.prepareStatement("UPDATE mobile SET model=?,price=? WHERE sno=?");
+                    pst.setInt(3,id);
+                    pst.setString(1,name1);
+                    pst.setInt(2,price1);
+                    int y = pst.executeUpdate();
+                    if(y>0){
+                        System.out.println("Updates sucessfully");
+                    }
+                    m.display(pst,con,rs);
+                    break;
+                    
+                case 4:
+                    int id1 = sc.nextInt();
+                    pst = con.prepareStatement("DELETE FROM mobile WHERE sno=?");
+                    pst.setInt(1,id1);
+                    int z = pst.executeUpdate();
+                    if(z>0){
+                        System.out.println("Upadted successfully");
+                    }
+                    m.display(pst,con,rs);
+                   
+           }
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+    }
+}
